@@ -3,7 +3,8 @@ package main.linkedlist
 Hunter Kepley
 ITSC 4102
 Fall 2020
- */
+
+*/
 
 class LinkedList<T> {
     var start: LinkedNode<T>? = null // Start of linked list
@@ -42,10 +43,29 @@ class LinkedList<T> {
         return nodes
     }
 
+    // Remove a node 'n' from the linked list
+    fun remove(n: LinkedNode<T>) {
+        var iterator = this.start
+
+        while(iterator?.next != null) {
+
+            if(iterator.next == n) {
+                iterator.next = n.next // Node before n now no longer points to n
+                n.next = null // Make it so n no longer points to any node in the list
+                println("Node removed successfully")
+                return
+            }
+
+            iterator = iterator.next
+        }
+
+        println("Node not found and wasn't removed")
+    }
+
     // Print a nice looking linked list if not empty
     fun printPretty() {
         if(size == 0) {
-            println("Linked list empty")
+            println("[]")
             return
         }
         
