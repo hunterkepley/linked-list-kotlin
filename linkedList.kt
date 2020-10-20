@@ -1,8 +1,8 @@
 package main.linkedlist
 /*
-Developed by Hunter Kepley 2020
+Hunter Kepley
 ITSC 4102
-Dr. Ali Sever
+Fall 2020
  */
 
 class LinkedList<T> {
@@ -12,15 +12,34 @@ class LinkedList<T> {
     // Add node to linked list
     fun add(node: LinkedNode<T>) {
         if(size == 0) {
-            start = node
-            size++
+            this.start = node
+            this.size++
             return
         }
-        var iterator = start
+
+        var iterator = this.start
+
         while(iterator?.next != null) {
             iterator = iterator.next
         }
         iterator?.next = node
+    }
+
+    // Find all nodes that have the given value
+    fun find(value: T): ArrayList<LinkedNode<T>> {
+        var nodes = ArrayList<LinkedNode<T>>()
+        
+        var iterator = this.start
+
+        while(iterator != null) {
+
+            if(iterator.value == value) {
+                nodes.add(iterator) // We found a node that matches, add to array list
+            }
+            iterator = iterator.next
+        }
+
+        return nodes
     }
 
     // Print a nice looking linked list if not empty
@@ -30,11 +49,15 @@ class LinkedList<T> {
             return
         }
         
-        var iterator = start
+        var iterator = this.start
+
         println("LINKED LIST")
+
         while(iterator != null) {
             print("[${iterator.value}]")
+
             iterator = iterator.next
+
             if(iterator != null) {
                 print(" -> ")
             }
@@ -47,6 +70,7 @@ class LinkedList<T> {
 class LinkedNode<T>(value: T) {
     var value: T
     var next: LinkedNode<T>? = null
+
     init {
         this.value = value
     }
