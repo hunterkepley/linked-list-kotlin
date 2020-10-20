@@ -38,4 +38,9 @@ fun main() {
     list.remove(foundNodes.get(1))
 
     list.printPretty()
+
+    println("\nAdding one last node with value 345623\n")
+    list.add(LinkedNode<Int>(345623))
+
+    list.printPretty()
 }
